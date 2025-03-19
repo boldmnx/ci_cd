@@ -1,0 +1,31 @@
+name: Node.js CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Кодыг татаж авах
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Node.js орчныг тохируулах
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      # Хамаарал (dependencies)-ийг суулгах
+      - name: Install dependencies
+        run: npm install
+
+      # Кодын тестийг гүйцэтгэх
+      - name: Run Tests
+        run: npm test
+      - run: npm run build
+
